@@ -1,9 +1,10 @@
 <?php
 
-$userId = '2633'; // Enter your TRMNL userId, can be found in plugin variable `trmnl.user.id`
-$siteName = 'TRMNL Plugins'; // For example `TRMNL Plugins by Jasper`
-$defaultColorMode = 'light'; // Options: 'light' or 'dark'
-$debug = false; // Set to false to disable logging to debug.log
+// Load Configuration
+if (!file_exists(__DIR__ . '/config.php')) {
+    die("Error: config.php not found. Please create one based on config_example.php");
+}
+require_once __DIR__ . '/config.php';
 
 function logMessage($message)
 {
@@ -88,6 +89,9 @@ function downloadImage($url, $path, $maxAge = null)
 if (isset($_GET['refresh']) && $_GET['refresh'] === 'true') {
     if (!$userId) {
         die("Error: User ID is not configured.");
+    }
+    if (!isset($_GET['pass']) || $_GET['pass'] !== $refreshPass) {
+        die("Error: Invalid or missing refresh password.");
     }
     logMessage("Starting refresh process...");
     $plugins = fetchAllPlugins($baseUrl);
@@ -244,7 +248,7 @@ sort($categories);
         <?php if (!$userId): ?>
             <div class="warning-box">
                 <h3>Configuration Required</h3>
-                <p>Please open <code>index.php</code> and configure your <code>$userId</code>.</p>
+                <p>Please open <code>config.php</code> and configure your <code>$userId</code>.</p>
                 <p>You can find your User ID in any of your TRMNL plugin's variables under <code>trmnl.user.id</code>.</p>
             </div>
         <?php else: ?>

@@ -21,22 +21,30 @@ A simple PHP-based viewer for your TRMNL plugins. This project fetches plugins a
 
 1.  **Clone the repository**:
 
-2.  **Configure User ID**:
-    Open `index.php` and update the `$userId` variable at the top of the file with your TRMNL user ID:
+2.  **Configure Application**:
+    Copy `config_example.php` to `config.php`:
+    ```bash
+    cp config_example.php config.php
+    ```
+    Open `config.php` and update the `$userId` and `$refreshPass` variables:
     ```php
-    $userId = 2633; // Replace with your TRMNL user ID
+    $userId = '2633'; // Replace with your TRMNL user ID
+    $refreshPass = 'secure_password'; // Set a secure password for refreshing data
     ```
 
 3.  **Run the application**:
     Open the index.php in your browser.
 
 4.  **Refresh Data**:
-    To fetch the latest data from the TRMNL API, visit the page with url variable `refresh=true` like `index.php?refresh=true`. This will download new plugin data and images.
+4.  **Refresh Data**:
+    To fetch the latest data from the TRMNL API, visit the page with `refresh=true` and your password:
+    `index.php?refresh=true&pass=YOUR_SECURE_PASSWORD`
+    This will download new plugin data and images.
 
 ## Configuration
 
--   **Debug Mode**: Set `$debug = true;` in `index.php` to enable logging to `debug.log`. Not needed for normal operation.
--   **Default Theme**: Change `$defaultColorMode` in `index.php` to `'light'` or `'dark'` to set the initial theme preference.
+-   **Debug Mode**: Set `$debug = true;` in `config.php` to enable logging to `debug.log`.
+-   **Default Theme**: Change `$defaultColorMode` in `config.php` to `'light'` or `'dark'`.
 
 ## Automation & Cron Job
 
