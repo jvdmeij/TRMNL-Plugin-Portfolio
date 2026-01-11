@@ -162,6 +162,7 @@ if (isset($_GET['refresh']) && $_GET['refresh'] === 'true') {
 // Read Plugins from Disk
 $loadedPlugins = [];
 $categories = [];
+$categoryCounts = [];
 
 if (is_dir($pluginsDir)) {
     $dirs = scandir($pluginsDir);
@@ -192,8 +193,14 @@ if (is_dir($pluginsDir)) {
                     $cats = explode(',', $pluginData['author_bio']['category']);
                     foreach ($cats as $cat) {
                         $cat = trim($cat);
-                        if ($cat && !in_array($cat, $categories)) {
-                            $categories[] = $cat;
+                        if ($cat) {
+                            if (!in_array($cat, $categories)) {
+                                $categories[] = $cat;
+                            }
+                            if (!isset($categoryCounts[$cat])) {
+                                $categoryCounts[$cat] = 0;
+                            }
+                            $categoryCounts[$cat]++;
                         }
                     }
                 }
@@ -229,6 +236,9 @@ sort($categories);
                 </svg>
             </button>
             <h1><?php echo htmlspecialchars($siteName); ?></h1>
+            <p class="subtitle subtitle--small">Plugins for <a href="https://usetrmnl.com/" target="_blank">TRMNL</a> -
+                an e-ink companion that helps you
+                stay focused.</p>
             <p class="subtitle"><?php echo count($loadedPlugins); ?> plugins available</p>
 
             <div class="controls">
@@ -236,7 +246,7 @@ sort($categories);
                     <button class="filter-btn active" data-category="all">All</button>
                     <?php foreach ($categories as $category): ?>
                         <button class="filter-btn"
-                            data-category="<?php echo htmlspecialchars($category); ?>"><?php echo htmlspecialchars(ucfirst($category)); ?></button>
+                            data-category="<?php echo htmlspecialchars($category); ?>"><?php echo htmlspecialchars(ucfirst($category)); ?> <span class="filter-count">(<?php echo $categoryCounts[$category]; ?>)</span></button>
                     <?php endforeach; ?>
                 </div>
             </div>
