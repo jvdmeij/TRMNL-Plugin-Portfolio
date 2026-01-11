@@ -222,7 +222,9 @@ sort($categories);
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -246,7 +248,8 @@ sort($categories);
                     <button class="filter-btn active" data-category="all">All</button>
                     <?php foreach ($categories as $category): ?>
                         <button class="filter-btn"
-                            data-category="<?php echo htmlspecialchars($category); ?>"><?php echo htmlspecialchars(ucfirst($category)); ?> <span class="filter-count">(<?php echo $categoryCounts[$category]; ?>)</span></button>
+                            data-category="<?php echo htmlspecialchars($category); ?>"><?php echo htmlspecialchars(ucfirst($category)); ?>
+                            <span class="filter-count">(<?php echo $categoryCounts[$category]; ?>)</span></button>
                     <?php endforeach; ?>
                 </div>
             </div>

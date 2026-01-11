@@ -1,30 +1,34 @@
 :root {
-    --bg-color: #f8f9fa;
-    --text-color: #1a1a1a;
-    --card-bg: #ffffff;
-    --accent-color: #2563eb;
-    --border-color: #e5e7eb;
-    --secondary-text: #6b7280;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --bg-color: #e7e7e7;
+    --text-color: #141414;
+    --card-bg: #fafafa;
+    --accent-color: #f8654b;
+    --border-color: #d1d5db;
+    /* Slightly darker for contrast on gray */
+    --secondary-text: #4b5563;
+    --font-heading: 'EB Garamond', serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --radius-lg: 12px;
     --radius-md: 8px;
+    --radius-pill: 9999px;
 }
 
+/* Dark mode adjustments - keep existing logic but tweak colors if needed later */
 [data-theme="dark"] {
-    --bg-color: #000;
-    --text-color: #fff;
-    --card-bg: #1c1c1e;
-    --accent-color: #FF0008;
-    --border-color: #424242;
-    --secondary-text: #C9C9C9;
+    --bg-color: #1a1a1a;
+    --text-color: #e5e5e5;
+    --card-bg: #262626;
+    --accent-color: #f8654b;
+    --border-color: #404040;
+    --secondary-text: #a3a3a3;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
 }
 
 [data-theme="dark"] .plugin-card {
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--card-bg);
 }
 
 
@@ -35,10 +39,10 @@
 }
 
 body {
-    font-family: var(--font-family);
+    font-family: var(--font-body);
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.5;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -51,9 +55,11 @@ body {
 /* Header */
 .site-header {
     background-color: var(--card-bg);
-    padding: 40px 0;
-    border-bottom: 1px solid var(--border-color);
+    /* Use card-bg for header to distinct from body grey */
+    padding: 60px 0;
     margin-bottom: 40px;
+    border-bottom: 0;
+    /* Remove border for cleaner look */
 }
 
 
@@ -80,10 +86,11 @@ body {
 }
 
 .site-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 500;
     margin-bottom: 8px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 .subtitle {
@@ -120,11 +127,13 @@ body {
 
 .sort-select {
     appearance: none;
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 8px 32px 8px 16px;
-    font-family: var(--font-family);
+    background-color: var(--card-bg);
+    border: 1px solid transparent;
+    /* No border for cleaner look */
+    border-radius: var(--radius-pill);
+    /* Pill shape */
+    padding: 10px 40px 10px 20px;
+    font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-color);
@@ -133,13 +142,15 @@ body {
     transition: all 0.2s ease;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: right 12px center;
+    background-position: right 16px center;
     background-size: 16px;
+    box-shadow: var(--shadow-sm);
 }
 
 .sort-select:hover,
 .sort-select:focus {
-    border-color: var(--accent-color);
+    background-color: #fff;
+    box-shadow: var(--shadow-md);
     outline: none;
 }
 
@@ -153,9 +164,9 @@ body {
 .filter-btn {
     background: transparent;
     border: 1px solid var(--border-color);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
+    padding: 8px 20px;
+    border-radius: var(--radius-pill);
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--secondary-text);
     cursor: pointer;
@@ -165,18 +176,18 @@ body {
 .filter-btn:hover {
     border-color: var(--accent-color);
     color: var(--accent-color);
+    background-color: transparent;
 }
 
 .filter-btn.active {
     background-color: var(--accent-color);
-    border-color: var(--accent-color);
     color: white;
 }
 
 .filter-count {
     font-weight: 400;
     margin-left: 4px;
-    opacity: 0.7;
+    opacity: 0.8;
     font-size: 0.85em;
 }
 
@@ -187,7 +198,8 @@ body {
 /* Grid */
 .plugin-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* Slightly narrower cards */
     gap: 24px;
     padding-bottom: 60px;
 }
@@ -197,27 +209,35 @@ body {
     background: var(--card-bg);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
+    /* Removed shadow for cleaner look */
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid var(--border-color);
+    border: 1px solid transparent;
+    /* Prepare for border */
     display: flex;
     flex-direction: column;
 }
 
 .plugin-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
+    background-color: #fff;
+    /* Slight brighten on hover */
     box-shadow: var(--shadow-md);
 }
 
 .card-image {
     width: 100%;
-    height: 220px;
-    background-color: #f3f4f6;
+    height: 180px;
+    /* Reduced height */
+    background-color: transparent;
+    /* Transparent bg for image area */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
+    padding: 20px;
+    /* Add padding to contain image */
 }
 
 .card-image img {
@@ -228,7 +248,7 @@ body {
 }
 
 .card-content {
-    padding: 20px;
+    padding: 24px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -265,8 +285,18 @@ body {
 .install-btn {
     display: block;
     width: 100%;
-    text-align: center;
     margin-top: auto;
+    text-align: center;
+}
+
+.install-btn img {
+    height: 40px;
+    transition: opacity 0.2s;
+    vertical-align: middle;
+}
+
+.install-btn:hover img {
+    opacity: 0.9;
 }
 
 .warning-box {
