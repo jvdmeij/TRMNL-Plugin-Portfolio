@@ -302,8 +302,3 @@ body {
     align-items: center;
     gap: 4px;
 }
-
-.plugin-stats::before {
-    content: "↓";
-    font-size: 0.9em;
-}
