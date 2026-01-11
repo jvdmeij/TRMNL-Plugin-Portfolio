@@ -2,6 +2,9 @@
 
 A simple PHP-based viewer for your TRMNL plugins. This project fetches plugins associated with a specific TRMNL user ID and displays them in a responsive grid layout with filtering and sorting capabilities.
 
+<img width="1920" height="1440" alt="trmnl-portfolio" src="https://github.com/user-attachments/assets/da9dae43-4083-40e2-8ef7-b9327be24006" />
+
+
 ## Features
 
 -   **Plugin Gallery**: View all your plugins with screenshots and stats.
