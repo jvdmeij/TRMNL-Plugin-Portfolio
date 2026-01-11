@@ -36,8 +36,7 @@ A simple PHP-based viewer for your TRMNL plugins. This project uses the TRMNL ap
     Open the index.php in your browser.
 
 4.  **Refresh Data**:
-4.  **Refresh Data**:
-    To fetch the latest data from the TRMNL API, visit the page with `refresh=true` and your password:
+    To fetch the latest data from the TRMNL API, visit the page with `refresh=true` and your password (from `config.php`):
     `index.php?refresh=true&pass=YOUR_SECURE_PASSWORD`
     This will download new plugin data and images.
 
