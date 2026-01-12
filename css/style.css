@@ -237,8 +237,6 @@ body {
     justify-content: center;
     overflow: hidden;
     position: relative;
-    padding: 20px;
-    /* Add padding to contain image */
 }
 
 .card-image img {
