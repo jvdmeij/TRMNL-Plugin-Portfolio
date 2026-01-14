@@ -2,6 +2,7 @@
     --bg-color: #e7e7e7;
     --text-color: #141414;
     --card-bg: #fafafa;
+    --card-bg-hover: #ffffff;
     --accent-color: #f8654b;
     --border-color: #d1d5db;
     /* Slightly darker for contrast on gray */
@@ -20,6 +21,7 @@
     --bg-color: #1a1a1a;
     --text-color: #e5e5e5;
     --card-bg: #262626;
+    --card-bg-hover: #222222;
     --accent-color: #f8654b;
     --border-color: #404040;
     --secondary-text: #a3a3a3;
@@ -221,7 +223,7 @@ body {
 
 .plugin-card:hover {
     transform: translateY(-2px);
-    background-color: #fff;
+    background: var(--card-bg-hover);
     /* Slight brighten on hover */
     box-shadow: var(--shadow-md);
 }
